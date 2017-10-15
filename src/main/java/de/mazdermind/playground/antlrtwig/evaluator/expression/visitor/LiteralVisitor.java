@@ -14,13 +14,23 @@ public class LiteralVisitor extends ContextualTwigListener {
 	public void exitLiteral(TwigParser.LiteralContext ctx) {
 		TwigParser.LiteralExpressionContext literalExpression = ctx.literalExpression();
 
-		if(literalExpression.INT() != null) {
-			Integer integer = Integer.valueOf(literalExpression.INT().getText());
+		if(literalExpression.literalInteger() != null) {
+			Integer integer = Integer.valueOf(literalExpression.literalInteger().getText());
 			log.debug("literal INT: {}", integer);
 			context.pushState(new ValueState(integer));
 		}
-		else if(literalExpression.STRING() != null) {
-			String string = literalExpression.STRING().getText();
+		else if(literalExpression.literalFloat() != null) {
+			Double number = Double.valueOf(literalExpression.literalFloat().getText());
+			log.debug("literal FLOAT: {}", number);
+			context.pushState(new ValueState(number));
+		}
+		else if(literalExpression.literalString() != null) {
+			String string = literalExpression.literalString().STRING().getText();
+			String quoteChar = string.substring(0, 1);
+
+			string = string.substring(1, string.length()-1);
+			string = string.replace("\\"+quoteChar, quoteChar);
+
 			log.debug("literal STRING: {}", string);
 			context.pushState(new ValueState(string));
 		}
