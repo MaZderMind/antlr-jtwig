@@ -38,7 +38,7 @@ public class ExpressionVisitor extends ContextualTwigListener {
 				break;
 		}
 
-		log.info("mathop: {} on lhs={} and rhs={} = {}", operation, lhs, rhs, result);
+		log.debug("mathop: {} on lhs={} and rhs={} = {}", operation, lhs, rhs, result);
 
 		context.pushState(new ValueState(result));
 	}

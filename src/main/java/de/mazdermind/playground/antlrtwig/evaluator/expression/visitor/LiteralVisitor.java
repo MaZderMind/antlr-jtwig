@@ -16,12 +16,12 @@ public class LiteralVisitor extends ContextualTwigListener {
 
 		if(literalExpression.INT() != null) {
 			Integer integer = Integer.valueOf(literalExpression.INT().getText());
-			log.info("literal INT: {}", integer);
+			log.debug("literal INT: {}", integer);
 			context.pushState(new ValueState(integer));
 		}
 		else if(literalExpression.STRING() != null) {
 			String string = literalExpression.STRING().getText();
-			log.info("literal STRING: {}", string);
+			log.debug("literal STRING: {}", string);
 			context.pushState(new ValueState(string));
 		}
 	}
