@@ -13,32 +13,30 @@ public class ExpressionVisitor extends ContextualTwigListener {
 	@Override
 	public void exitMathOp(TwigParser.MathOpContext ctx){
 		String operation = ctx.getChild(1).getText();
-		ValueState rhs = context.popState(ValueState.class);
-		ValueState lhs = context.popState(ValueState.class);
 
-		Integer lhsInt = (Integer) lhs.getValue();
-		Integer rhsInt = (Integer) rhs.getValue();
+		Integer rightHand = (Integer) context.popState(ValueState.class).getValue();
+		Integer leftHand = (Integer) context.popState(ValueState.class).getValue();
 		Integer result = null;
 
 		switch (operation) {
 			case "+":
-				result = lhsInt + rhsInt;
+				result = leftHand + rightHand;
 				break;
 
 			case "-":
-				result = lhsInt - rhsInt;
+				result = leftHand - rightHand;
 				break;
 
 			case "/":
-				result = lhsInt / rhsInt;
+				result = leftHand / rightHand;
 				break;
 
 			case "*":
-				result = lhsInt * rhsInt;
+				result = leftHand * rightHand;
 				break;
 		}
 
-		log.debug("mathop: {} on lhs={} and rhs={} = {}", operation, lhs, rhs, result);
+		log.debug("mathop: {} on lhs={} and rhs={} = {}", operation, leftHand, rightHand, result);
 
 		context.pushState(new ValueState(result));
 	}

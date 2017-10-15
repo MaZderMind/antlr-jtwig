@@ -3,6 +3,7 @@ grammar Twig;
 expression: expression ('*' | '/') expression # MathOp
           | expression ('+' | '-') expression # MathOp
           | '(' expression  ')' # Group
+          | variableAccessExpression #Access
           | variableExpression #Variable
           | literalExpression #Literal;
 
@@ -14,6 +15,12 @@ literalFloat: sign? NUMBER ('.' NUMBER)?;
 literalString: STRING;
 
 sign: MINUS | PLUS;
+
+variableAccessExpression: variableExpression accessExpression;
+
+accessExpression: (arrayAccessExpression | propertyAccessExpression) accessExpression*;
+arrayAccessExpression: '[' expression ']';
+propertyAccessExpression: '.' VARIABLE;
 
 STRING: DOUBLE_QUOTED_STRING | SINGLE_QUOTED_STRING;
 DOUBLE_QUOTED_STRING: '"'  (~('"'  | '\\') | '\\' ('"'  | '\\'))* '"';

@@ -6,6 +6,7 @@ import org.antlr.v4.runtime.Parser;
 
 import com.google.common.collect.ImmutableList;
 
+import de.mazdermind.playground.antlrtwig.evaluator.expression.visitor.ArrayAccessVisitor;
 import de.mazdermind.playground.antlrtwig.evaluator.expression.visitor.ExpressionVisitor;
 import de.mazdermind.playground.antlrtwig.evaluator.expression.visitor.LiteralVisitor;
 import de.mazdermind.playground.antlrtwig.evaluator.expression.visitor.VariableVisitor;
@@ -15,6 +16,7 @@ public class VisitorConfigurator {
 			.add(ExpressionVisitor.class)
 			.add(LiteralVisitor.class)
 			.add(VariableVisitor.class)
+			.add(ArrayAccessVisitor.class)
 			.build();
 
 	public static void configureVisitor(final Parser parser, EvaluationContext context) {

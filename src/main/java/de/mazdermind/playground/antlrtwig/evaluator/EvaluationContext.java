@@ -2,7 +2,9 @@ package de.mazdermind.playground.antlrtwig.evaluator;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class EvaluationContext {
 	private Map<Class<?>, LinkedList<Object>> stacks = new HashMap<>();
@@ -30,6 +32,12 @@ public class EvaluationContext {
 
 	public <T> T popState(Class<T> type) {
 		return type.cast(stacks.get(type).pop());
+	}
+
+	public <T> List<T> getStateStack(Class<T> type) {
+		return stacks.get(type).stream()
+				.map(type::cast)
+				.collect(Collectors.toList());
 	}
 
 	public EvaluationContext addVariables(Map<String, Object> variables) {

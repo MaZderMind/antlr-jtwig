@@ -11,10 +11,11 @@ public class VariableVisitor extends ContextualTwigListener {
 	private static Logger log = LoggerFactory.getLogger(VariableVisitor.class);
 
 	@Override
-	public void exitVariable(TwigParser.VariableContext ctx) {
-		String variableName = ctx.variableExpression().VARIABLE().getText();
+	public void exitVariableExpression(TwigParser.VariableExpressionContext ctx) {
+		String variableName = ctx.VARIABLE().getText();
 		Object variableValue = context.getVariable(variableName);
 
+		log.debug("variable: {}", variableName);
 		context.pushState(new ValueState(variableValue));
 	}
 }
