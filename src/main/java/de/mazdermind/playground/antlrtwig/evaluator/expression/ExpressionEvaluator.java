@@ -18,4 +18,8 @@ public class ExpressionEvaluator {
 		parser.expression();
 		return context.popState(ValueState.class).getValue();
 	}
+
+	public EvaluationContext getContext() {
+		return context;
+	}
 }
