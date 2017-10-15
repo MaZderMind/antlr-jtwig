@@ -6,7 +6,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import de.mazdermind.playground.antlrtwig.grammar.TwigLexer;
 import de.mazdermind.playground.antlrtwig.grammar.TwigParser;
 
-class ParserHelper {
+class ExpressionParserHelper {
 	static TwigParser.ExpressionContext parse(String s) {
 		TwigLexer lexer = new TwigLexer(CharStreams.fromString(s));
 		CommonTokenStream tokens = new CommonTokenStream(lexer);

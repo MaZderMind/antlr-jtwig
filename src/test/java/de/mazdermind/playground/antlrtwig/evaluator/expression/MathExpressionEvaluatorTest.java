@@ -6,7 +6,7 @@ import static org.hamcrest.core.Is.is;
 
 import org.junit.Test;
 
-public class Math {
+public class MathExpressionEvaluatorTest {
 	@Test
 	public void addition() {
 		assertThat(evaluate("55+3+7"), is(65));
