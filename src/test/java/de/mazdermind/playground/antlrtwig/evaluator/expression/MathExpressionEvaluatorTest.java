@@ -13,6 +13,11 @@ public class MathExpressionEvaluatorTest {
 	}
 
 	@Test
+	public void additionWithWhitespace() {
+		assertThat(evaluate("  55\n+\t5"), is(60));
+	}
+
+	@Test
 	public void subtraction() {
 		assertThat(evaluate("55-5-50"), is(0));
 	}
