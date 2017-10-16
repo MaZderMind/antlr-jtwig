@@ -9,6 +9,7 @@ import com.google.common.collect.ImmutableList;
 import de.mazdermind.playground.antlrtwig.evaluator.expression.visitor.ArrayAccessVisitor;
 import de.mazdermind.playground.antlrtwig.evaluator.expression.visitor.ExpressionVisitor;
 import de.mazdermind.playground.antlrtwig.evaluator.expression.visitor.LiteralVisitor;
+import de.mazdermind.playground.antlrtwig.evaluator.expression.visitor.PropertyAccessVisitor;
 import de.mazdermind.playground.antlrtwig.evaluator.expression.visitor.VariableVisitor;
 
 public class VisitorConfigurator {
@@ -17,6 +18,7 @@ public class VisitorConfigurator {
 			.add(LiteralVisitor.class)
 			.add(VariableVisitor.class)
 			.add(ArrayAccessVisitor.class)
+			.add(PropertyAccessVisitor.class)
 			.build();
 
 	public static void configureVisitor(final Parser parser, EvaluationContext context) {
